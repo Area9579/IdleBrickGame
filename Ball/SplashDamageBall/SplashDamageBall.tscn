@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4d18dybv4n0k"]
+
+[ext_resource type="Script" path="res://Ball/SplashDamageBall/splash_damage_ball.gd" id="1_f271q"]
+[ext_resource type="Resource" uid="uid://cwemoatle7l7g" path="res://Ball/SplashDamageBall/splash_damage_ball.tres" id="2_6rwxh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_12o1t"]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfkeg"]
+radius = 85.0
+
+[node name="SplashDamageBall" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_f271q")
+ball = ExtResource("2_6rwxh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_12o1t")
+debug_color = Color(0.976731, 0, 0.4096, 0.42)
+
+[node name="SplashDamageZone" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SplashDamageZone"]
+shape = SubResource("CircleShape2D_gfkeg")
+debug_color = Color(0.805743, 0.233401, 0.945683, 0.184314)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ball" load_steps=3 format=3 uid="uid://cwemoatle7l7g"]
+
+[ext_resource type="Script" path="res://Ball/ball_base.gd" id="1_xcx6g"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ud40w"]
+
+[resource]
+script = ExtResource("1_xcx6g")
+damage = 1
+speed = 200
+ballTexture = SubResource("PlaceholderTexture2D_ud40w")
+doubleDamageBoost = false
+doubleSpeedBoost = false
+doubleDamageCard = false
+doubleSpeedCard = false

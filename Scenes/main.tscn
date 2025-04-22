@@ -1,16 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://b152rhwsqbhnb"]
+[gd_scene load_steps=26 format=3 uid="uid://b152rhwsqbhnb"]
 
 [ext_resource type="PackedScene" uid="uid://cvast3ww3rtfe" path="res://Ball/BasicBall/basic_ball.tscn" id="1_3t50l"]
 [ext_resource type="PackedScene" uid="uid://gri11maih0gc" path="res://Bricks/BrickFormations/Basic_Formation_6.tscn" id="2_aun4w"]
 [ext_resource type="Script" path="res://GameManager/BrickFormationMan/brickFormationMan.gd" id="2_jiuwj"]
 [ext_resource type="Script" path="res://GameManager/MainMan/GameUpdateMan.gd" id="3_802fw"]
-[ext_resource type="Texture2D" uid="uid://u716gwdjfey2" path="res://icon.svg" id="3_gv57q"]
+[ext_resource type="Texture2D" uid="uid://8xq6cbr3fxiy" path="res://icon.svg" id="3_gv57q"]
 [ext_resource type="Script" path="res://UI/MainControl.gd" id="3_vcle5"]
 [ext_resource type="Resource" uid="uid://c5ktt6m1yrjxt" path="res://GameManager/MainMan/GameManager.tres" id="4_f61w4"]
 [ext_resource type="Script" path="res://UI/upgrades.gd" id="4_q33mv"]
 [ext_resource type="Resource" uid="uid://h8d7m1c7ycpr" path="res://Ball/BasicBall/basicBall.tres" id="5_6yf3o"]
 [ext_resource type="Script" path="res://UI/cards.gd" id="8_8icbw"]
+[ext_resource type="Script" path="res://UI/splash_damage_upgrades.gd" id="8_56tcq"]
 [ext_resource type="Script" path="res://UI/boosts.gd" id="8_dvf2u"]
+[ext_resource type="Resource" uid="uid://cwemoatle7l7g" path="res://Ball/SplashDamageBall/splash_damage_ball.tres" id="9_i3di7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tfvwg"]
 font_size = 50
@@ -323,24 +325,48 @@ label_settings = SubResource("LabelSettings_yqalx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Template" type="HBoxContainer" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer"]
+[node name="SplashDamageBall" type="HBoxContainer" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 alignment = 1
+script = ExtResource("8_56tcq")
+basicBallR = ExtResource("9_i3di7")
+gameManR = ExtResource("4_f61w4")
 
-[node name="Icon" type="TextureRect" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template"]
+[node name="Icon" type="TextureRect" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall"]
+modulate = Color(0.998472, 0.554579, 0.723114, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("3_gv57q")
 
-[node name="plusBall" type="Button" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template"]
+[node name="plusBall" type="Button" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template/plusBall"]
+[node name="Label" type="Label" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall/plusBall"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.993
+anchor_bottom = 1.0
+offset_right = -0.131012
+offset_bottom = 3.0
+text = "Cost
+50
+Level
+0"
+label_settings = SubResource("LabelSettings_yqalx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Power" type="Button" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall/Power"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.993
@@ -355,32 +381,12 @@ label_settings = SubResource("LabelSettings_yqalx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Power" type="Button" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template"]
+[node name="Speed" type="Button" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template/Power"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.993
-anchor_bottom = 1.0
-offset_right = -0.131012
-offset_bottom = 3.0
-text = "Cost
-0
-Level
-0"
-label_settings = SubResource("LabelSettings_yqalx")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Speed" type="Button" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="Label" type="Label" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/Template/Speed"]
+[node name="Label" type="Label" parent="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall/Speed"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.993
@@ -1063,6 +1069,9 @@ position = Vector2(547, 1960)
 [connection signal="pressed" from="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/BasicBall/plusBall" to="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/BasicBall" method="_on_plus_ball_pressed"]
 [connection signal="pressed" from="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/BasicBall/Power" to="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/BasicBall" method="_on_power_pressed"]
 [connection signal="pressed" from="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/BasicBall/Speed" to="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/BasicBall" method="_on_speed_pressed"]
+[connection signal="pressed" from="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall/plusBall" to="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall" method="_on_plus_ball_pressed"]
+[connection signal="pressed" from="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall/Power" to="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall" method="_on_power_pressed"]
+[connection signal="pressed" from="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall/Speed" to="FullScreen/ExtraMenu/Upgrades/Upgrades/VBoxContainer/SplashDamageBall" method="_on_speed_pressed"]
 [connection signal="pressed" from="FullScreen/ExtraMenu/Cards/CardsAvailable/VBoxContainer/HBoxContainer/BallSpeed" to="FullScreen/ExtraMenu/Cards" method="_on_ball_speed_pressed"]
 [connection signal="pressed" from="FullScreen/ExtraMenu/Cards/CardsAvailable/VBoxContainer/HBoxContainer/BallPower" to="FullScreen/ExtraMenu/Cards" method="_on_ball_power_pressed"]
 [connection signal="pressed" from="FullScreen/ExtraMenu/Cards/CardsAvailable/VBoxContainer/HBoxContainer/BrickCash" to="FullScreen/ExtraMenu/Cards" method="_on_brick_cash_pressed"]

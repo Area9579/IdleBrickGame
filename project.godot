@@ -29,6 +29,7 @@ project/assembly_name="idle_ball_game"
 
 folder_colors={
 "res://Ball/": "red",
+"res://Ball/SplashDamageBall/": "pink",
 "res://Bricks/": "yellow",
 "res://GameManager/": "purple",
 "res://Scenes/": "teal",
